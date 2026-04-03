@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Archive Doctrina
+
+An atmospheric conceptual studio world built as a premium interactive 3D exhibition. Navigate a void-like sky environment, gaze at floating film frames, and explore an archive of creative projects.
+
+> **Note:** The full experience is optimized for desktop with a mouse/trackpad. A mobile-friendly fallback grid view is shown on touch or small-screen devices.
+
+## Tech Stack
+
+- [Next.js 16](https://nextjs.org) — React framework
+- [React Three Fiber](https://docs.pmnd.rs/react-three-fiber) — Three.js renderer for React
+- [Drei](https://github.com/pmndrs/drei) — Three.js helpers
+- [Framer Motion](https://www.framer.com/motion/) — animations
+- [Tailwind CSS v4](https://tailwindcss.com) — utility-first styling
+- [TypeScript](https://www.typescriptlang.org)
+
+## Prerequisites
+
+- **Node.js** 18.18 or later
+- **npm** (comes with Node.js)
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/cesarroger/archive-doctrina.git
+cd archive-doctrina
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start the development server |
+| `npm run build` | Create an optimized production build |
+| `npm start` | Start the production server (requires `build` first) |
+| `npm run lint` | Run ESLint |
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                  # Next.js App Router pages & layout
+│   ├── layout.tsx        # Root layout (fonts, metadata)
+│   ├── page.tsx          # Home page
+│   └── projects/[slug]/  # Individual project pages
+├── components/           # React components
+│   ├── archive-doctrina-experience.tsx  # Main entry component
+│   ├── void-scene.tsx    # Three.js 3D scene
+│   ├── floating-frame.tsx
+│   ├── intro-screen.tsx
+│   ├── project-overlay.tsx
+│   ├── gaze-detector.tsx
+│   └── cloud/            # Cloud-related 3D components
+└── data/
+    └── projects.ts       # Project definitions (add your own here)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Adding Projects
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Edit `src/data/projects.ts` to add or modify projects. Each project requires:
 
-## Deploy on Vercel
+```ts
+{
+  id: string;           // unique identifier
+  slug: string;         // URL slug  (e.g. "my-project")
+  title: string;
+  tagline: string;
+  shortDescription: string;
+  description: string;
+  category: string;
+  year: string;
+  duration: string;     // e.g. "08:42"
+  location: string;
+  accent: string;       // hex colour for UI accents
+  posterAccent: string; // hex colour for poster gradient
+  frameTone: string;    // hex colour for frame background
+  videoUrl: string;     // publicly accessible video URL
+  position: [number, number, number]; // 3D world position
+  rotationY: number;    // frame Y-axis rotation in radians
+  detailSections: Array<{ heading: string; body: string }>;
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The easiest way to deploy is with the [Vercel Platform](https://vercel.com/new):
+
+```bash
+npm run build
+```
+
+Then follow the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for other hosting options.
