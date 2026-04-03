@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+:root {
+  --background: #d9efff;
+  --foreground: #0f2032;
+  --muted: rgba(15, 32, 50, 0.58);
+  --line: rgba(15, 32, 50, 0.1);
+  --glow: rgba(255, 255, 255, 0.92);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background:
+    linear-gradient(180deg, #6abfff 0%, #a5ddff 42%, #d7f1ff 80%, #f7fdff 100%);
+  color: var(--foreground);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: transparent;
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(18, 17, 15, 0.08);
+}
+
+.editorial-kicker {
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.void-sheen {
+  background:
+    linear-gradient(180deg, #6abfff 0%, #9dd9ff 42%, #d3efff 78%, #f8fdff 100%);
+}
+
+.grain {
+  position: relative;
+}
+
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23bbb7aa' fill-opacity='0.16'%3E%3Ccircle cx='8' cy='11' r='1'/%3E%3Ccircle cx='32' cy='54' r='1'/%3E%3Ccircle cx='68' cy='23' r='1'/%3E%3Ccircle cx='111' cy='72' r='1'/%3E%3Ccircle cx='151' cy='31' r='1'/%3E%3Ccircle cx='129' cy='132' r='1'/%3E%3Ccircle cx='27' cy='129' r='1'/%3E%3Ccircle cx='84' cy='118' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
